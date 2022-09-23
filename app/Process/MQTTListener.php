@@ -16,7 +16,7 @@ class MQTTListener extends AbstractProcess
     {
         $event = $this->event;
         $device = config('device');
-        $topics = "sleepybox/{$device}";
+        $topic = "sleepybox/{$device}";
         if($device) {
             $mqtt = MQTT::instance();
             $mqtt->subscribe($topic, function($topic, $message) use ($event) {
