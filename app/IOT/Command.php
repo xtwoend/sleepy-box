@@ -18,12 +18,12 @@ class Command
     {
         $cmd = json_decode($command);
 
-        if($cmd && isset($cmd['door'])) {
-            $status = $cmd['door'];
-            $this->exec(['gpio', 'write', self::DOOR, (int) $status]);
-        }elseif($cmd && $cmd['door']) {
-            $status = $cmd['lamp'];
-            $this->exec(['gpio', 'write', self::LAMP, (int) $status]);
+        if(isset($cmd['door'])) {
+            $status = (int) $cmd['door'];
+            $this->exec(['gpio', 'write', self::DOOR, $status]);
+        }elseif(isset($cmd['lamp'])) {
+            $status = (int) $cmd['lamp'];
+            $this->exec(['gpio', 'write', self::LAMP, $status]);
         }
     }
 
