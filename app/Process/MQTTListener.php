@@ -20,7 +20,6 @@ class MQTTListener extends AbstractProcess
         if($device) {
             $mqtt = MQTT::instance();
             $mqtt->subscribe($topic, function($topic, $message) use ($event) {
-                var_dump($message);
                 $event->dispatch(new MQTTReceived($topic, $message));
             });
             $mqtt->loop(true);

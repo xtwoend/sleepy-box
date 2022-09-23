@@ -16,13 +16,13 @@ class Command
 
     public function command($command)
     {
-        $cmd = json_decode($command);
+        $cmd = json_decode($command, true);
         if(isset($cmd['door'])) {
             $status = (int) $cmd['door'];
-            $this->exec(['gpio', 'write', self::DOOR, $status]);
+            $this->exec('gpio', 'write', self::DOOR, $status);
         }elseif(isset($cmd['lamp'])) {
             $status = (int) $cmd['lamp'];
-            $this->exec(['gpio', 'write', self::LAMP, $status]);
+            $this->exec('gpio', 'write', self::LAMP, $status);
         }
     }
 
@@ -30,7 +30,6 @@ class Command
     {
         $args = implode(" ", $args);
         $cmd = shell_exec($args);
-
         return $cmd;
     }
     
