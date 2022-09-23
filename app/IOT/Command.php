@@ -17,7 +17,6 @@ class Command
     public function command($command)
     {
         $cmd = json_decode($command);
-
         if(isset($cmd['door'])) {
             $status = (int) $cmd['door'];
             $this->exec(['gpio', 'write', self::DOOR, $status]);
