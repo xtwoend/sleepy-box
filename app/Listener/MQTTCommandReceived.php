@@ -27,7 +27,7 @@ class MQTTCommandReceived implements ListenerInterface
     public function process(object $event): void
     {
         if($event instanceof MQTTReceived) {
-            var_dump(Command::exec($event->message));
+            (new Command)->command($event->message);
         }
     }
 }
